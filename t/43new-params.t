@@ -86,6 +86,22 @@ like(
 
 like(
     exception {
+        DateTime->new(
+            year       => 10,
+            month      => 2,
+            day        => 12,
+            hour       => 4,
+            minute     => 12,
+            second     => 51,
+            nanosecond => 124512.000000000123
+        );
+    },
+    qr/Validation failed for type named Nanosecond/,
+    'nanosecond must be an integer (not just close)'
+);
+
+like(
+    exception {
         DateTime->new( year => 10, month => 2, day => 12 )->today;
     },
     qr/called with reference/,
